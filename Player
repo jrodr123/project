@@ -1,30 +1,60 @@
-public class Dealer extends Player {
-
+public class Player {
+	Hand myhand = new Hand();
+	String name = " ";
+	int wallet = 0;
+	int bet = 0;
+	Deck deck = new Deck();
+	protected int handvalue = 0;
 	
-	public Dealer() {
-		wallet = 0;
+	public Player(){
 	}
-	public void hit(){
-		 Card newcard = deck.getNextCard();	        
-	        myhand.addCard(newcard);
-	        System.out.println("Dealer hits.\n");
-	        System.out.println("Dealer card is the: " + newcard.toString());
-	        System.out.println("Dealer total is: " + myhand.getValue());
+	public Player(String name, int wallet) {
+		this.name = name;
+		this.wallet = wallet;
 	}
 	public void getHand(){
 		Hand hand = new Hand();
 		this.myhand = hand;
 		this.handvalue = hand.getValue();
-		System.out.println("Dealer's Second Card: ");
-		this.showSecond();
+		System.out.print("User: " + name + " ");
+		System.out.println(myhand.toString());
 	}
-	public Card showSecond(){
-		return myhand.showSecond();
+	public void hit() {
+        Card newcard = deck.getNextCard();
+        
+        myhand.addCard(newcard);
+        System.out.println("Player hits.\n");
+        System.out.println("Your card is the " + newcard.toString());
+        System.out.println("Your total is now " + myhand.getValue());
+    }
+	public boolean bet (int amount){
+		if(bet > wallet){
+			System.out.println("User: " + name + "has insufficient funds. Balance: " + wallet);
+			return false;
+		}
+		else {
+			bet = amount;
+			wallet -= bet;
+			return true;
+		}
 	}
-	public void payout(int bet){
-		wallet -= bet;
-	}
-	public void collectBet(int bet){
+	public void win(){
 		wallet += bet;
+	}
+	public int getBet(){
+		return bet;
+	}
+	public int getValue(){
+		return myhand.getValue();
+	}
+	public String showHand(){
+		return myhand.toString();
+	}
+	public String toString(){
+		return "User: " + name + 
+				" Player funds: " + wallet;
+	}
+	public boolean checkBust(){
+		return myhand.checkBust();
 	}
 }
