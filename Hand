@@ -2,8 +2,10 @@ import java.util.ArrayList;
 
 public class Hand {
 	Deck deck = new Deck();
-	ArrayList<Card> cards = new ArrayList();
-	public Hand() {
+	ArrayList<Card> cards = new ArrayList<Card>();
+	int total = 0;
+	
+	public Hand() { //Constructor
 		Card mycard = deck.getNextCard();
 		cards.add(mycard);
 		Card mycard1 = deck.getNextCard();
@@ -13,25 +15,54 @@ public class Hand {
 		Card mycard = deck.getNextCard();
 		cards.add(mycard);
 	}
-	public void addCard(Card card){ //Override to add card by hand
-		cards.add(card);
-	}
 	public int getValue(){
 		Card temp;
-		int total = 0;
+		total = 0;
+		int ace = 0;
 		for (int i = 0; i < cards.size(); i++){
 			temp = cards.get(i);
 			total += temp.getValue();
+			if (temp.isAce())
+					ace ++;
 		}
+		while (ace > 0){
+			if (total > 21){
+				total -= 10;
+				ace --;
+			}
+		}	
 		return total;
+	}
+	public Card showSecond(){
+		return cards.get(1);
+	}
+	public int aceCheck(){
+		int numAce = 0;
+		for (int i = 0; i < cards.size(); i++){
+			if (cards.get(i).isAce())
+				numAce += 1;
+		}
+		return numAce;
 	}
 	public String toString(){
 		String ans = "Hand: ";
 		Card temp = new Card();
 		for (int i = 0; i < cards.size(); i++){
 			temp = cards.get(i);
-			ans += temp.toString();
+			ans += " " + temp.toString();
+			
 		}
 		return ans;
 	}
+	public boolean checkBust(){
+		if (this.getValue() > 21)
+			return true;
+		else
+			return false;
+	}
+	public void addCard(Card newcard) {//Override to add card by hand
+		cards.add(newcard);
+		
+	}
+	
 }
