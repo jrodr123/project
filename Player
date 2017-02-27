@@ -2,32 +2,59 @@ public class Player {
 	Hand myhand = new Hand();
 	String name = " ";
 	int wallet = 0;
-	int ante = 0;
+	int bet = 0;
 	Deck deck = new Deck();
-	private int handvalue = 0;
+	protected int handvalue = 0;
 	
 	public Player(){
 	}
-	public Player(Hand hand, String name, int wallet) {
-		this.myhand = hand;
+	public Player(String name, int wallet) {
 		this.name = name;
 		this.wallet = wallet;
-		this.handvalue = hand.getValue();
 	}
-
+	public void getHand(){
+		Hand hand = new Hand();
+		this.myhand = hand;
+		this.handvalue = hand.getValue();
+		System.out.print("User: " + name + " ");
+		System.out.println(myhand.toString());
+	}
 	public void hit() {
         Card newcard = deck.getNextCard();
         
         myhand.addCard(newcard);
         System.out.println("Player hits.\n");
         System.out.println("Your card is the " + newcard.toString());
-        System.out.println("Your total is now " + handvalue);
+        System.out.println("Your total is now " + myhand.getValue());
     }
-	public void ante (int amount){
-		ante = amount;
-		wallet -= ante;
+	public boolean bet (int amount){
+		if(bet > wallet){
+			System.out.println("User: " + name + "has insufficient funds. Balance: " + wallet);
+			return false;
+		}
+		else {
+			bet = amount;
+			wallet -= bet;
+			return true;
+		}
 	}
-	public int getAnte(){
-		return ante;
+	public void win(){
+		wallet += bet;
+	}
+	public int getBet(){
+		return bet;
+	}
+	public int getValue(){
+		return myhand.getValue();
+	}
+	public String showHand(){
+		return myhand.toString();
+	}
+	public String toString(){
+		return "User: " + name + 
+				" Player funds: " + wallet;
+	}
+	public boolean checkBust(){
+		return myhand.checkBust();
 	}
 }
