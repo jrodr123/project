@@ -1,61 +1,73 @@
-import javax.swing.*;
-import java.awt.*;
-public class GUI{
-public static void main (String [] args){
+import java.awt.EventQueue;
 
-   JFrame main = new JFrame("BLACK JACK");
-    main.setVisible(true);
-    main.setSize(900,750);
-    main.setResizable(false);
-    main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    JPanel panel1 = new JPanel();
-    JPanel panel2 = new JPanel(new GridBagLayout());
-    JPanel panel3 = new JPanel();
-    JPanel panel4 = new JPanel();
-    JPanel panel5 = new JPanel();
-    JPanel panel6 = new JPanel();
-    GridBagConstraints layout = new GridBagConstraints();
-    
-    JButton play = new JButton("PLAY");
-    layout.gridx = 0;
-    layout.gridy = 0;
-    panel2.add(play,layout);
-    JButton hit = new JButton("HIT");
-    layout.gridx = 1;
-    layout.gridy = 0;
-    panel2.add(hit,layout);
-    JButton stand = new JButton("STAND");
-    layout.gridx = 2;
-    layout.gridy = 0;
-    panel2.add(stand,layout);
-    panel1.setBackground(Color.BLUE);
-    panel1.setSize(900,550);
-    main.add(panel1);
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Window.Type;
 
-    panel2.setBackground(Color.ORANGE);
-   panel2.setSize(900,590);
-    main.getContentPane().add(panel2, BorderLayout.SOUTH);
-    panel2.add(play);
-    panel2.add(hit);
-    panel2.add(stand);
-    panel3.setBounds(900,900,900,900);
-   //panel3.setSize(20,20);
-       panel3.setBackground(Color.RED);
+public class GUI {
 
-    panel1.add(panel3);
-    
-    panel4.setBounds(900,900,900,900);
-   //panel3.setSize(20,20);
-       panel4.setBackground(Color.RED);
-    panel1.add(panel4);
+	private JFrame frame;
 
-panel5.setBounds(900,900,900,900);
-   //panel3.setSize(20,20);
-       panel5.setBackground(Color.RED);
-    panel1.add(panel5);
-    panel6.setBounds(900,900,900,900);
-   //panel3.setSize(20,20);
-       panel6.setBackground(Color.RED);
-    panel1.add(panel6);
-  	}
-   }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI window = new GUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public GUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame("BLACK JACK");
+		frame.setType(Type.UTILITY);
+		frame.getContentPane().setForeground(Color.GREEN);
+		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 13));
+		frame.setBounds(100, 100, 1010, 650);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		 
+		
+		JButton btnPlay = new JButton("PLAY");
+		btnPlay.setBounds(249, 565, 97, 25);
+		frame.getContentPane().add(btnPlay);
+		
+		JButton btnHit = new JButton("HIT");
+		btnHit.setBounds(436, 565, 97, 25);
+		frame.getContentPane().add(btnHit);
+		
+		JButton btnStand = new JButton("STAND");
+		btnStand.setBounds(623, 565, 97, 25);
+		frame.getContentPane().add(btnStand);
+		
+		JLabel label = new JLabel("");
+		label.setForeground(Color.YELLOW);
+		Image img = new ImageIcon(this.getClass().getResource("0.jpg")).getImage();
+		label.setIcon(new ImageIcon(img));
+		label.setBounds(-67, -73, 1087, 739);
+		frame.getContentPane().add(label);
+	}
+}
+
