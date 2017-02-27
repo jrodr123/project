@@ -14,21 +14,15 @@ public class Deck {
 		
 		numCards = decks * 52;
 		myCards = new Card[numCards];
-		
 		int index = 0;
-		
 		for(int d = 0; d < decks; d++){
-			
 			for(int s = 0; s < 4; s++){
-				
 				for(int n = 1; n <= 13; n++){
 					myCards[index]= new Card(n,Suit.values()[s]);
 					index++;
-					
 				}
 			}
 		}
-		
 		this.shuffle();
 	}
 	
