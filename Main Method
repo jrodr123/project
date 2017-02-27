@@ -1,0 +1,113 @@
+/*THINGS TO DO:
+1Find a way to get rid of a user if their balance becomes 0.
+2See if Option A will work, if not delete it.
+3Implement a way for an individual user to quit without everyone quitting.
+4Check if Player.bet is subtracting money during Round.play as a boolean.
+5Implement splitting and doubling down
+6Implement a value checker that changes the value of the ACE from 1 to 11 based on situation. 
+			I believe I implemented it in the Hand.getValue() method.
+7Need to implement, on the deal phase of Round.play the ability to get paid for on the deal "blackjacks".
+8Need to connect the GUI to the main so that all of the functions are user buttons instead of user inputs.
+*/
+
+
+import java.util.Scanner;
+
+public class RunGame {
+	public static void main(String[] args) {
+		//ASSIGN VARIABLES
+		int users = 0;
+		Scanner scan = new Scanner(System.in);
+		String cont = "y";
+		String[] name = new String[6];
+		int[] balance = new int[6];
+		Player[] userArray = new Player[6];
+		int roundNumber = 1;
+		//String temp = ""; ONLY NEEDED IF OPTION A WORKS
+		//String[] userList = {"user1", "user2", "user3","user4", "user5", "user6"}; ONLY NEEDED FOR OPTION A
+		
+		
+		//CREATE USERS
+		/*while (cont == "y" && users < 7){ OPTION A More efficient but can't name an object a variable :/
+			System.out.println("What is the first users name?");
+			name = scan.nextLine();
+			System.out.println("What is the starting funds for " + name + "?");
+			balance = scan.nextInt();
+			temp = userList[1];
+			Player temp = new Player(name, balance);
+			users ++;
+			System.out.println("Continue adding users? ('y' or 'n')");
+			cont = scan.nextLine();
+			}
+		*/
+		while (cont.equalsIgnoreCase("y") && users < 7){ //OPTION B Less Efficient 
+			System.out.println("What is the first users name?");
+			name[users] = scan.nextLine();
+			System.out.println("What is the starting funds for " + name[users] + "?");
+			balance[users] = scan.nextInt();
+			users ++;
+			System.out.println("Continue adding users? ('y' or 'n')" + '\n');
+			cont = scan.nextLine();
+			}
+		switch (users){  //user a switch to create correct number of users. 
+			case 1:
+				Player user1 = new Player(name[0], balance[0]);
+				userArray[0] = user1;
+				break;
+			case 2:
+				user1 = new Player(name[0], balance[0]);
+				Player user2 = new Player(name[1], balance[1]);
+				userArray[0] = user1; userArray[1] = user2;
+				break;
+			case 3:
+				user1 = new Player(name[0], balance[0]);
+				user2 = new Player(name[1], balance[1]);
+				Player user3 = new Player(name[2], balance[2]);
+				userArray[0] = user1; userArray[1] = user2; userArray[2] = user3;
+				
+				break;
+			case 4:
+				user1 = new Player(name[0], balance[0]);
+				user2 = new Player(name[1], balance[1]);
+				user3 = new Player(name[2], balance[2]);
+				Player user4 = new Player(name[3], balance[3]);
+				userArray[0] = user1; userArray[1] = user2; userArray[2] = user3;
+				userArray[3] = user4; 
+				break;
+			case 5:
+				user1 = new Player(name[0], balance[0]);
+				user2 = new Player(name[1], balance[1]);
+				user3 = new Player(name[2], balance[2]);
+				user4 = new Player(name[3], balance[3]);
+				Player user5 = new Player(name[4], balance[4]);
+				userArray[0] = user1; userArray[1] = user2; userArray[2] = user3;
+				userArray[3] = user4; userArray[4] = user5; 
+				break;
+			case 6:
+				user1 = new Player(name[0], balance[0]);
+				user2 = new Player(name[1], balance[1]);
+				user3 = new Player(name[2], balance[2]);
+				user4 = new Player(name[3], balance[3]);
+				user5 = new Player(name[4], balance[4]);
+				Player user6 = new Player(name[5], balance[5]);
+				userArray[0] = user1; userArray[1] = user2; userArray[2] = user3;
+				userArray[3] = user4; userArray[4] = user5; userArray[5] = user6;
+				break;
+			default: //Ends game??
+				break;
+				
+		}
+		//START GAME
+		cont = "y";
+		while (cont.equalsIgnoreCase("y")){
+			Round round = new Round(userArray, users);
+			round.play();
+			System.out.println("End Round: " + roundNumber);
+			for (int i = 0; i < users; i++)
+				userArray[i].toString();
+			System.out.println("Play another round?('y' or 'n')");
+		}
+	
+	scan.close();
+	}
+}
