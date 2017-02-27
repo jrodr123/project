@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+
+public class Hand {
+	Deck deck = new Deck();
+	ArrayList<Card> cards = new ArrayList();
+	public Hand() {
+		Card mycard = deck.getNextCard();
+		cards.add(mycard);
+		Card mycard1 = deck.getNextCard();
+		cards.add(mycard1);
+	}
+	public void addCard(){
+		Card mycard = deck.getNextCard();
+		cards.add(mycard);
+	}
+	public String toString(){
+		String ans = "Hand: ";
+		Card temp = new Card();
+		for (int i = 0; i < cards.size(); i++){
+			temp = cards.get(i);
+			ans += temp.toString();
+		}
+		return ans;
+	}
+}
