@@ -1,0 +1,33 @@
+public class Player {
+	Hand myhand = new Hand();
+	String name = " ";
+	int wallet = 0;
+	int ante = 0;
+	Deck deck = new Deck();
+	private int handvalue = 0;
+	
+	public Player(){
+	}
+	public Player(Hand hand, String name, int wallet) {
+		this.myhand = hand;
+		this.name = name;
+		this.wallet = wallet;
+		this.handvalue = hand.getValue();
+	}
+
+	public void hit() {
+        Card newcard = deck.getNextCard();
+        
+        myhand.addCard(newcard);
+        System.out.println("Player hits.\n");
+        System.out.println("Your card is the " + newcard.toString());
+        System.out.println("Your total is now " + handvalue);
+    }
+	public void ante (int amount){
+		ante = amount;
+		wallet -= ante;
+	}
+	public int getAnte(){
+		return ante;
+	}
+}
