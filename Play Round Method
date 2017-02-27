@@ -1,0 +1,65 @@
+import java.util.Scanner;
+public class Round {
+	Player[] users = new Player[6];
+	Scanner scan = new Scanner(System.in);
+	int bet = 0;
+	Dealer dealer = new Dealer();
+	String choice = "";
+	int counter = 0;
+	
+	
+	 public Round(Player[] userList, int counter) {
+		this.users = userList;
+		this.counter = counter;
+	}
+	 
+	public void play(){
+		System.out.println("Betting Phase, Minimum $2, Maximum $500: " + '\n');
+		for (int i = 0; i < counter; i++){
+			do {
+			System.out.println("User: " + users[i].name + " Balance: " + users[i].wallet + '\n'
+					+ "How much would you like to bet?" );
+			bet = scan.nextInt();
+			}
+			while (!users[i].bet(bet) && bet > 1 && bet < 501);	//Will this place the bet during the check?
+		}
+		System.out.println("Playing Phase: " + '\n');
+		//Deal Cards
+		for (int i = 0; i < counter; i++){ 
+			users[i].getHand();
+		}
+		dealer.getHand();
+		//Each user hits, stands, splits, or doubles down
+		for (int i = 0; i < counter; i++){
+			do {
+			System.out.println("User: " + users[i].name + " you have " + users[i].toString() 
+					+ " Would you like to hit or stand? ('hit' or 'stand'");
+			if (choice.equalsIgnoreCase("hit")){
+				users[i].hit();
+				if (users[i].checkBust()){
+					System.out.println("User went over 21.");
+					choice = "stand";
+				}
+			}
+			}
+			while (choice.equals("hit"));
+		}
+		//Dealer's turn;
+		while (dealer.getValue() < 17)
+			dealer.hit();
+		
+		//Payout Phase:
+		for (int i = 0; i < counter; i++){
+			if (users[i].getValue() >= dealer.getValue() && !users[i].checkBust()){
+				System.out.println("User: " + users[i].name + " won " + users[i].bet);
+				users[i].win();
+				dealer.payout(users[i].getBet());
+			}
+			else {
+				System.out.println("User: " + users[i].name + " lost that round ");
+				dealer.collectBet(users[i].getBet());
+			}
+		}	
+		
+	}
+}
