@@ -3,6 +3,7 @@ public class Card {
 
 	private Suit mySuit;
 	private int rank;
+	private int value;  //Value to add to player hand value
 	
 	public Card(){
 		
@@ -12,8 +13,19 @@ public class Card {
 		
 		rank = r;
 		mySuit = s;
+		if (r > 10)
+			value = 10;
+		else if (r == 1)
+			value = 11;
+		else
+			value = r;
 	}
-	
+	public boolean isAce(){//Ace checker to properly evaluate value later.
+		if (rank == 1)
+			return true;
+		else
+			return false;
+	}
 	public int getRank(){
 		
 		return rank;
@@ -22,6 +34,10 @@ public class Card {
 	public Suit getSuit(){
 		
 		return mySuit;
+	}
+	public int getValue(){
+		
+		return value;
 	}
 	
 	public String toString(){
