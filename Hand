@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+
+public class Hand {
+	Deck deck = new Deck();
+	ArrayList<Card> cards = new ArrayList();
+	public Hand() {
+		Card mycard = deck.getNextCard();
+		cards.add(mycard);
+		Card mycard1 = deck.getNextCard();
+		cards.add(mycard1);
+	}
+	public void addCard(){ //Add card implicitly
+		Card mycard = deck.getNextCard();
+		cards.add(mycard);
+	}
+	public void addCard(Card card){ //Override to add card by hand
+		cards.add(card);
+	}
+	public int getValue(){
+		Card temp;
+		int total = 0;
+		for (int i = 0; i < cards.size(); i++){
+			temp = cards.get(i);
+			total += temp.getValue();
+		}
+		return total;
+	}
+	public String toString(){
+		String ans = "Hand: ";
+		Card temp = new Card();
+		for (int i = 0; i < cards.size(); i++){
+			temp = cards.get(i);
+			ans += temp.toString();
+		}
+		return ans;
+	}
+}
