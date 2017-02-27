@@ -1,31 +1,30 @@
 public class Dealer extends Player {
 
-    if (checkBlackJack() = false){
-        //show players's cards and let player decide to Hit or Stand.
-
-        System.out.println("Your cards are: ");
-        for (int i = 0; i < playerHand.size(); i++) {
-            System.out.println("    " + showCard(getCard(playerHand, i)));
-        }
-        System.out.println("\nYour total is " + value(playerHand) + "\n");
-
-        //implement hit and stand button
-        System.out.print("Hit or Stand? ");
-
-        // If the user Hits, the user gets a card.
-        if (userAction.stand()) {
-            continue;
-        }
-        if (playerAction.hit()) {  // userAction is 'H'.
-            // Give the user a card.  If the user goes over 21, the user loses.
-            if (value(playerHand) > 21) {
-                System.out.println();
-                System.out.println("You busted by going over 21.  You lose.");
-                System.out.println("Dealer's other card was the " + showCard(getCard(playerHand, 1)));
-                return false;
-            }
-        }
-    }
+	
+	public Dealer() {
+		wallet = 0;
+	}
+	public void hit(){
+		 Card newcard = deck.getNextCard();	        
+	        myhand.addCard(newcard);
+	        System.out.println("Dealer hits.\n");
+	        System.out.println("Dealer card is the: " + newcard.toString());
+	        System.out.println("Dealer total is: " + myhand.getValue());
+	}
+	public void getHand(){
+		Hand hand = new Hand();
+		this.myhand = hand;
+		this.handvalue = hand.getValue();
+		System.out.println("Dealer's Second Card: ");
+		this.showSecond();
+	}
+	public Card showSecond(){
+		return myhand.showSecond();
+	}
+	public void payout(int bet){
+		wallet -= bet;
+	}
+	public void collectBet(int bet){
+		wallet += bet;
+	}
 }
-
-/* UML says something about a start function. not sure what that is. */
