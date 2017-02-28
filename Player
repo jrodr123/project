@@ -41,7 +41,7 @@ public class Player {
 		return name;
 	}
 	public void win(){
-		wallet += bet;
+		wallet += bet + bet;
 	}
 	public int getBet(){
 		return bet;
