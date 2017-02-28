@@ -43,9 +43,8 @@ public class RunGame {
 		System.out.println("How many users are going to play?");
 		users = scan.nextInt();
 		for (int i = 0; i < users; i++){ //OPTION B Less Efficient 
-			System.out.println("What is the first users name?");
-			name[i] = scan.nextLine();
-			name[i] = scan.nextLine(); //Was skipping the first scan.nextLine and moving to the next line of code. 
+			System.out.println("What is user" + (i + 1) + "'s name?");
+			name[i] = scan.next();
 			System.out.println("What is the starting funds for " + name[i] + "?");
 			balance[i] = scan.nextInt();
 			}
