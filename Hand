@@ -44,16 +44,7 @@ public class Hand {
 		}
 		return numAce;
 	}
-	public String toString(){
-		String ans = "Hand: ";
-		Card temp = new Card();
-		for (int i = 0; i < cards.size(); i++){
-			temp = cards.get(i);
-			ans += " " + temp.toString();
-			
-		}
-		return ans;
-	}
+	
 	public boolean checkBust(){
 		if (this.getValue() > 21)
 			return true;
@@ -64,5 +55,14 @@ public class Hand {
 		cards.add(newcard);
 		
 	}
-	
+	public String toString(){
+		String ans = "Hand: ";
+		Card temp = new Card();
+		for (int i = 0; i < cards.size(); i++){
+			temp = cards.get(i);
+			ans += "\n" + temp.toString();
+			
+		}
+		return ans;
+	}
 }
