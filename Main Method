@@ -23,6 +23,7 @@ public class RunGame {
 		int[] balance = new int[6];
 		Player[] userArray = new Player[6];
 		int roundNumber = 1;
+		int houseBalance = 0;
 		//String temp = ""; ONLY NEEDED IF OPTION A WORKS
 		//String[] userList = {"user1", "user2", "user3","user4", "user5", "user6"}; ONLY NEEDED FOR OPTION A
 		
@@ -100,14 +101,15 @@ public class RunGame {
 		cont = "y";
 		while (cont.equalsIgnoreCase("y")){
 			Round round = new Round(userArray, users);
-			round.play();
+			houseBalance += round.play();
 			System.out.println("End Round: " + roundNumber);
 			for (int i = 0; i < users; i++)
 				System.out.println(userArray[i].toString());
 			System.out.println("Play another round?('y' or 'n')");
 			cont = scan.next();
 		}
-	
+	System.out.println("The house ended up with: $" + houseBalance);
 	scan.close();
 	}
 }
+
