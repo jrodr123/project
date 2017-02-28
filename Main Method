@@ -103,8 +103,9 @@ public class RunGame {
 			round.play();
 			System.out.println("End Round: " + roundNumber);
 			for (int i = 0; i < users; i++)
-				userArray[i].toString();
+				System.out.println(userArray[i].toString());
 			System.out.println("Play another round?('y' or 'n')");
+			cont = scan.next();
 		}
 	
 	scan.close();
