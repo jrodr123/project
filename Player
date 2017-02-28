@@ -16,12 +16,11 @@ public class Player {
 		Hand hand = new Hand();
 		this.myhand = hand;
 		this.handvalue = hand.getValue();
-		System.out.print("User: " + name + " ");
+		System.out.print("User: " + name + '\n');
 		System.out.println(myhand.toString());
 	}
 	public void hit() {
         Card newcard = deck.getNextCard();
-        
         myhand.addCard(newcard);
         System.out.println("Player hits.\n");
         System.out.println("Your card is the " + newcard.toString());
@@ -37,6 +36,9 @@ public class Player {
 			wallet -= bet;
 			return true;
 		}
+	}
+	public String getName(){
+		return name;
 	}
 	public void win(){
 		wallet += bet;
