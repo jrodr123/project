@@ -30,6 +30,8 @@ public class Hand {
 				total -= 10;
 				ace --;
 			}
+		if (total > 21 && ace == 0)	
+			total = 0;
 		}	
 		return total;
 	}
