@@ -9,14 +9,17 @@ public class Dealer extends Player {
 		 Card newcard = deck.getNextCard();	        
 	        myhand.addCard(newcard);
 	        System.out.println("Dealer hits.\n");
-	        System.out.println("Dealer card is the: " + newcard.toString());
-	        System.out.println("Dealer total is: " + myhand.getValue());
+	        System.out.println("Dealer's card is the: " + newcard.toString());
+	        System.out.println("Dealer's total is: " + myhand.getValue());
 	}
 	public void getHand(){
 		Hand hand = new Hand();
 		this.myhand = hand;
 		this.handvalue = hand.getValue();
 		System.out.println("Dealer's Second Card: " + this.showSecond());
+	}
+	public int getValue(){
+		return myhand.dealerValue();
 	}
 	public Card showSecond(){
 		return myhand.showSecond();
