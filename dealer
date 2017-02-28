@@ -3,6 +3,7 @@ public class Dealer extends Player {
 	
 	public Dealer() {
 		wallet = 0;
+		name = "Dealer";
 	}
 	public void hit(){
 		 Card newcard = deck.getNextCard();	        
@@ -15,8 +16,7 @@ public class Dealer extends Player {
 		Hand hand = new Hand();
 		this.myhand = hand;
 		this.handvalue = hand.getValue();
-		System.out.println("Dealer's Second Card: ");
-		this.showSecond();
+		System.out.println("Dealer's Second Card: " + this.showSecond());
 	}
 	public Card showSecond(){
 		return myhand.showSecond();
