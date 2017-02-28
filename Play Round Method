@@ -23,9 +23,10 @@ public class Round {
 			}while (!users[i].bet(bet) && bet > 1 && bet < 501);
 			
 		}
-		System.out.println("Playing Phase: " + "\n");
+		System.out.println("Playing Phase: ");
 		//Deal Cards
 		for (int i = 0; i < counter; i++){ 
+			System.out.println(" ");
 			users[i].getHand();
 			System.out.println("\n");
 		}
@@ -34,7 +35,8 @@ public class Round {
 		//Each user hits, stands, splits, or doubles down
 		for (int i = 0; i < counter; i++){
 			do {
-			System.out.println(users[i].showHand() + " Would you like to hit or stand? ('hit' or 'stand')");
+			System.out.println(users[i].getName() + "\n" + users[i].showHand() 
+					+ "\nWould you like to hit or stand? ('hit' or 'stand')");
 			choice = scan.next();
 			if (choice.equalsIgnoreCase("hit")){
 				users[i].hit();
@@ -43,16 +45,16 @@ public class Round {
 					choice = "stand";
 				}
 			}
-			}while (choice.equals("stand"));
+			}while (choice.equals("hit"));
 		}
 		//Dealer's turn;
+		System.out.println("Dealer's " + dealer.showHand());
 		while (dealer.getValue() < 17)
 			dealer.hit();
-		
 		//Payout Phase:
 		for (int i = 0; i < counter; i++){
 			if (users[i].getValue() >= dealer.getValue() && !users[i].checkBust()){
-				System.out.println("User: " + users[i].name + " won " + users[i].bet);
+				System.out.println("User: " + users[i].name + " won $" + users[i].bet);
 				users[i].win();
 				dealer.payout(users[i].getBet());
 			}
@@ -64,3 +66,4 @@ public class Round {
 		
 	}
 }
+
