@@ -2,6 +2,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.sun.javafx.geom.Rectangle;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -9,6 +12,8 @@ import java.awt.Image;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Window.Type;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI {
 
@@ -51,14 +56,26 @@ public class GUI {
 		 
 		
 		JButton btnPlay = new JButton("PLAY");
+		btnPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnPlay.setBounds(249, 565, 97, 25);
 		frame.getContentPane().add(btnPlay);
 		
 		JButton btnHit = new JButton("HIT");
+		btnHit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnHit.setBounds(436, 565, 97, 25);
 		frame.getContentPane().add(btnHit);
 		
 		JButton btnStand = new JButton("STAND");
+		btnStand.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnStand.setBounds(623, 565, 97, 25);
 		frame.getContentPane().add(btnStand);
 		
@@ -68,6 +85,11 @@ public class GUI {
 		label.setIcon(new ImageIcon(img));
 		label.setBounds(-67, -73, 1087, 739);
 		frame.getContentPane().add(label);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(377, 75, 48, 45);
+		frame.getContentPane().add(lblNewLabel);
+
 	}
 }
 
